@@ -10,40 +10,20 @@ FoamFile
     version     2.0;
     format      ascii;
     class       dictionary;
-    location    "system";
-    object      controlDict;
+    location    "10/uniform";
+    object      time;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-application     pisoFoam;
+value           10;
 
-startFrom       latestTime;
+name            "10";
 
-startTime       0;
+index           2000;
 
-stopAt          endTime;
+deltaT          0.005;
 
-endTime         20;
-
-deltaT          0.02;
-
-writeControl    timeStep;
-
-writeInterval   100;
-
-purgeWrite      0;
-
-writeFormat     ascii;
-
-writePrecision  6;
-
-writeCompression off;
-
-timeFormat      general;
-
-timePrecision   6;
-
-runTimeModifiable true;
+deltaT0         0.005;
 
 
 // ************************************************************************* //
