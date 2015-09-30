@@ -15,46 +15,41 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-6
+5
 (
-    left
+    leftWall
     {
-        type            symmetryPlane;
-        inGroups        1(symmetryPlane);
-        nFaces          30;
-        startFace       1930;
+        type            wall;
+        inGroups        1(wall);
+        nFaces          50;
+        startFace       4432;
     }
-    right
+    rightWall
     {
-        type            patch;
-        nFaces          30;
-        startFace       1960;
+        type            wall;
+        inGroups        1(wall);
+        nFaces          50;
+        startFace       4482;
     }
-    down
+    lowerWall
     {
-        type            symmetryPlane;
-        inGroups        1(symmetryPlane);
-        nFaces          30;
-        startFace       1990;
+        type            wall;
+        inGroups        1(wall);
+        nFaces          62;
+        startFace       4532;
     }
-    up
-    {
-        type            patch;
-        nFaces          30;
-        startFace       2020;
-    }
-    hole
+    atmosphere
     {
         type            patch;
-        nFaces          20;
-        startFace       2050;
+        nFaces          46;
+        startFace       4594;
     }
-    frontAndBack
+    defaultFaces
     {
         type            empty;
         inGroups        1(empty);
-        nFaces          2000;
-        startFace       2070;
+        nFaces          4536;
+        startFace       4640;
     }
 )
 
