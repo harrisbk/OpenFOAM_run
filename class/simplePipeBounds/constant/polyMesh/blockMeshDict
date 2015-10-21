@@ -1,0 +1,91 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.3.0                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+convertToMeters 1;
+
+vertices
+(
+ (0 0 0)                            //0
+ (0.75 0 0)                         //1   // 4 cm duct diameter,
+ (0.75 0.019980964 -0.00087238877)  //2   // 5 deg wedge/2 = 2.5 deg
+ (0 0.019980964 -0.000872388770)    //3	  // y = 2 * cos(-2.5) = 1.998, 
+ (0.75 0.019980964 0.00087238877)   //4	  // z = 2*sin(-2.5) = -0.087238	
+ (0 0.019980964 0.00087238877)      //5	  // front face 5*sin(2.5) = 0.087238
+);
+
+blocks
+(
+    hex (0 1 2 3 0 1 4 5) // the collapsed centerline 
+    (50 15 1)             // vertices (0 and 1) show up twice
+    simpleGrading (1 1 1)
+);
+
+edges
+(
+);
+
+boundary
+(
+    inlet
+    {
+        type patch;
+        faces
+        (
+             (0 0 5 3 ) //collapsed vertices again. For some reason (0 5 3 0) should work, but blockMesh throws an error
+        );
+    }
+    outlet
+    {
+        type patch;
+        faces
+        (
+            (1 2 4 1)
+        );
+    }
+    wall
+    {
+        type wall;
+        faces
+        (
+            (3 5 4 2)
+        );
+    }
+    frontWedge
+    {
+        type wedge;
+        faces
+        (
+            (0 1 4 5)
+        );
+    }
+    backWedge // notice this face is not combined with the front face
+    {         // OpenFOAM requires distinct faces to solve the eqns right
+        type wedge;
+        faces
+        (
+            (0 3 2 1)
+         );
+    }
+);
+    /* We don't need to specify a boundary for the centerline ( (0 1 1 0) )
+     OpenFOAM assigns all unassigned boundaries to "empty" which is
+     correct for  a centerline. */
+
+mergePatchPairs
+(
+);
+
+// ************************************************************************* //
