@@ -1,1 +1,1 @@
-i don't know exactly what this is going to turn into, but i sure as hell don't want to lose the work i do through the semester in this class, so it's gonna get saved everyday i work on stuff
+project repository for professor daines's fall 2015 computational fluid dynamics class and brigham young university - idaho. includes OpenFOAM tutorials, team cases, self check cases, and examples of problems done in class.
