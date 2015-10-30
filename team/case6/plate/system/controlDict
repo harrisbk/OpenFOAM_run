@@ -29,7 +29,7 @@ deltaT          1;
 
 writeControl    timeStep;
 
-writeInterval   50;
+writeInterval   5;
 
 purgeWrite      0;
 
@@ -47,50 +47,47 @@ runTimeModifiable true;
 
 functions
 {
-    streamLines
+    probes
     {
-        type            streamLine;
+        // Where to load it from
+        functionObjectLibs ( "libsampling.so" );
 
-        // Where to load it from (if not already in solver)
-        functionObjectLibs ("libfieldFunctionObjects.so");
+        type            probes;
 
-        // Output every
+        // Name of the directory for probe data
+        name            probes;
+
+        // Write at same frequency as fields
         outputControl   outputTime;
-        // outputInterval 10;
+        outputInterval  1;
 
-        setFormat       vtk; //gnuplot;//xmgr;//raw;//jplot;//csv;//ensight;
+        // Fields to be probed
+        fields
+        (
+            p U
+        );
 
-        // Velocity field to use for tracking.
-        UName U;
-
-        // Tracked forwards (+U) or backwards (-U)
-        trackForward    true;
-
-        // Names of fields to sample. Should contain above velocity field!
-        fields (p k U);
-
-        // Steps particles can travel before being removed
-        lifeTime        10000;
-
-        // Number of steps per cell (estimate). Set to 1 to disable subcycling.
-        nSubCycle 5;
-
-        // Cloud name to use
-        cloudName       particleTracks;
-
-        // Seeding method. See the sampleSets in sampleDict.
-        seedSampleSet   uniform;  //cloud;//triSurfaceMeshPointSet;
-
-        uniformCoeffs
-        {
-            type        uniform;
-            axis        x;  //distance;
-
-            start       (-0.0205 0.001  0.00001);
-            end         (-0.0205 0.0251 0.00001);
-            nPoints     10;
-        }
+        probeLocations
+        (
+            (.8 0 0)         
+            (.8 0.002 0)   
+	    (.8 0.004 0)      
+            (.8 0.006 0)    
+            (.8 0.008 0)
+	    (.8 0.01 0)        
+            (.8 0.012 0)  
+            (.8 0.014 0)   
+            (.8 0.016 0)
+	    (.8 0.018 0)
+	    (.8 0.02 0)
+	    (.8 0.022 0)
+	    (.8 0.024 0)
+	    (.8 0.026 0)
+	    (.8 0.028 0)
+	    (.8 0.03 0)
+        );
     }
 }
+
 
 // ************************************************************************* //
