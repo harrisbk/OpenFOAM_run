@@ -87,6 +87,26 @@ functions
 	    (.8 0.03 0)
         );
     }
+    
+    forceCoeffs
+    {
+	type		forceCoeffs;
+	functionObjectLibs ("libforces.so");
+	outputControl 	outputTime;
+	patches 	(plate); //change to your patch name
+	pName 		p; // name of the field
+	UName 		U; // name of the field
+        rhoName         rhoInf;// need to specify this below if no rho field 
+	log 		true; //Dump to file
+	rhoInf 		1000; //density
+	CofR 		(0 0 0);
+	liftDir 	(0 1 0); //Direction for lift
+	dragDir 	(1 0 0); //Direction for Drag
+	pitchAxis 	(0 0 1); //Pitching axis
+	magUInf 	1; //Free stream velocity magnitude
+	lRef 		.8; //reference length "frontal or chord length"
+	Aref 		0.08; //reference area "frontal or planform area"
+    }
 }
 
 
