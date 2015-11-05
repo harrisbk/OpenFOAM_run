@@ -1,0 +1,53 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.4.0                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      decomposeParDict;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+numberOfSubdomains 6;
+
+method          hierarchical;
+// method          ptscotch;
+distributed yes;
+roots
+6
+(
+  "/home/OpenFOAM/brennanharris-2.4.0/run/proj/SRFSimpleFoam/stlTest/processor0"
+  "/home/OpenFOAM/brennanharris-2.4.0/run/proj/SRFSimpleFoam/stlTest/processor1"
+  "/home/OpenFOAM/brennanharris-2.4.0/run/proj/SRFSimpleFoam/stlTest/processor2"
+  "/home/OpenFOAM/brennanharris-2.4.0/run/proj/SRFSimpleFoam/stlTest/processor3"
+  "/home/OpenFOAM/brennanharris-2.4.0/run/proj/SRFSimpleFoam/stlTest/processor4"
+  "/home/OpenFOAM/brennanharris-2.4.0/run/proj/SRFSimpleFoam/stlTest/processor5"
+);
+
+simpleCoeffs
+{
+    n               (4 1 1);
+    delta           0.001;
+}
+
+hierarchicalCoeffs
+{
+    n               (3 2 1);
+    delta           0.001;
+    order           xyz;
+}
+
+manualCoeffs
+{
+    dataFile        "cellDecomposition";
+}
+
+
+// ************************************************************************* //

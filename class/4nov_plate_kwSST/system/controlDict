@@ -1,0 +1,113 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.4.0                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+application     simpleFoam;
+
+startFrom       latestTime;
+
+startTime       0;
+
+stopAt          endTime;
+
+endTime         1000;
+
+deltaT          1;
+
+writeControl    timeStep;
+
+writeInterval   5;
+
+purgeWrite      0;
+
+writeFormat     ascii;
+
+writePrecision  6;
+
+writeCompression off;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable true;
+
+functions
+{
+    probes
+    {
+        // Where to load it from
+        functionObjectLibs ( "libsampling.so" );
+
+        type            probes;
+
+        // Name of the directory for probe data
+        name            probes;
+
+        // Write at same frequency as fields
+        outputControl   outputTime;
+        outputInterval  1;
+
+        // Fields to be probed
+        fields
+        (
+            p U
+        );
+
+        probeLocations
+        (
+            (.8 0 0)         
+            (.8 0.002 0)   
+	    (.8 0.004 0)      
+            (.8 0.006 0)    
+            (.8 0.008 0)
+	    (.8 0.01 0)        
+            (.8 0.012 0)  
+            (.8 0.014 0)   
+            (.8 0.016 0)
+	    (.8 0.018 0)
+	    (.8 0.02 0)
+	    (.8 0.022 0)
+	    (.8 0.024 0)
+	    (.8 0.026 0)
+	    (.8 0.028 0)
+	    (.8 0.03 0)
+        );
+    }
+    
+    forceCoeffs
+    {
+	type		forceCoeffs;
+	functionObjectLibs ("libforces.so");
+	outputControl 	outputTime;
+	patches 	(plate); //change to your patch name
+	pName 		p; // name of the field
+	UName 		U; // name of the field
+        rhoName         rhoInf;// need to specify this below if no rho field 
+	log 		true; //Dump to file
+	rhoInf 		1000; //density
+	CofR 		(0 0 0);
+	liftDir 	(0 1 0); //Direction for lift
+	dragDir 	(1 0 0); //Direction for Drag
+	pitchAxis 	(0 0 1); //Pitching axis
+	magUInf 	1; //Free stream velocity magnitude
+	lRef 		.8; //reference length "frontal or chord length"
+	Aref 		0.08; //reference area "frontal or planform area"
+    }
+}
+
+
+// ************************************************************************* //
