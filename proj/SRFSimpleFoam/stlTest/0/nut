@@ -31,18 +31,19 @@ boundaryField
         type            calculated;
         value           uniform 0;
     }
-    innerWall
+    inner
     {
         type            nutkWallFunction;
         U               Urel;
         value           uniform 0;
     }
-    outerWall
+    outer
     {
         type            nutkWallFunction;
         U               Urel;
         value           uniform 0;
     }
+    /*
     cyclic_half0
     {
         type            cyclic;
@@ -53,6 +54,7 @@ boundaryField
         type            cyclic;
         value           uniform 0;
     }
+    */
 }
 
 

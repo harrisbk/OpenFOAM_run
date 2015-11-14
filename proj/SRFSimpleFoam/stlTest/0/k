@@ -30,16 +30,17 @@ boundaryField
     {
         type            zeroGradient;
     }
-    innerWall
+    inner
     {
         type            kqRWallFunction;
         value           uniform 0.375;
     }
-    outerWall
+    outer
     {
         type            kqRWallFunction;
         value           uniform 0.375;
     }
+    /*
     cyclic_half0
     {
         type            cyclic;
@@ -50,6 +51,7 @@ boundaryField
         type            cyclic;
         value           uniform 0.375;
     }
+    */
 }
 
 

@@ -30,14 +30,15 @@ boundaryField
         type            fixedValue;
         value           uniform 0;
     }
-    innerWall
+    inner
     {
         type            zeroGradient;
     }
-    outerWall
+    outer
     {
         type            zeroGradient;
     }
+    /*
     cyclic_half0
     {
         type            cyclic;
@@ -46,6 +47,7 @@ boundaryField
     {
         type            cyclic;
     }
+    */
 }
 
 

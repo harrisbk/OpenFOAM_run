@@ -30,18 +30,19 @@ boundaryField
     {
         type            zeroGradient;
     }
-    innerWall
+    inner
     {
         type            epsilonWallFunction;
         U               Urel;
         value           uniform 14.855;
     }
-    outerWall
+    outer
     {
         type            epsilonWallFunction;
         U               Urel;
         value           uniform 14.855;
     }
+    /*
     cyclic_half0
     {
         type            cyclic;
@@ -50,6 +51,7 @@ boundaryField
     {
         type            cyclic;
     }
+    */
 }
 
 

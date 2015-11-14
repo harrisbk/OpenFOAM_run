@@ -19,40 +19,23 @@ convertToMeters 10;
 
 vertices
 (
-	(-20 -10 0)		// 0 
-	(15 -10 0) 	// 1
-	(15 10 0)	// 2
-	(-20 10 0)	// 3
-	(-20 -10 100)	// 4
-	(15 -10 100)	// 5
-	(15 10 100)	// 6
-	(-20 10 100)	// 7
+	(-100 -200 40)		// 0 
+	(100 -200 40) 	// 1
+	(100 100 40)	// 2
+	(-100 100 40)	// 3
+	(-100 -200 41)	// 4
+	(100 -200 41)	// 5
+	(100 100 41)	// 6
+	(-100 100 41)	// 7
 );
 
 blocks
 (
-	hex (0 1 2 3 4 5 6 7) (10 10 10) simpleGrading (1 1 1)
-      //hex (1 0 9 4 13 12 21 16) (10 20 40) simpleGrading (1 1 1)
-      //hex (2 1 4 6 14 13 16 18) (2 20 40) simpleGrading (1 1 1)
-      //hex (3 2 6 8 15 14 18 20) (10 20 40) simpleGrading (1 1 1)
-      //hex (5 10 0 1 17 22 12 13) (10 20 40) simpleGrading (1 1 1)
-      //hex (11 7 2 3 23 19 14 15) (10 20 40) simpleGrading (1 1 1)
+	hex (0 1 2 3 4 5 6 7) (20 30 1) simpleGrading (1 1 1)
 );
 
 edges
 (
-      //arc  0 1 (       0.470        0.171        0.000 )
-      //arc  12 13 (       0.470        0.171        2.000 )
-      //arc  2 3 (       0.171        0.470        0.000 )
-      //arc  14 15 (       0.171        0.470        2.000 )
-      //arc  9 4 (       0.940        0.342        0.000 )
-      //arc  21 16 (       0.940        0.342        2.000 )
-      //arc  5 10 (       0.094        0.034        0.000 )
-      //arc  17 22 (       0.094        0.034        2.000 )
-      //arc  6 8 (       0.342        0.940        0.000 )
-      //arc  18 20 (       0.342        0.940        2.000 )
-      //arc  11 7 (       0.034        0.094        0.000 )
-      //arc  23 19 (       0.034        0.094        2.000 )
 );
 
 boundary
@@ -62,7 +45,7 @@ boundary
 		type	patch;
 		faces
 		(
-			(0 4 7 3)
+			(2 3 7 6)
 		);
 	}
 
@@ -71,10 +54,51 @@ boundary
 		type 	patch;
 		faces
 		(
-			(1 5 6 2)
+			(0 1 5 4)
 		);
 	}
-
+	inner
+	{
+	  type wall;
+	  faces
+	  (
+	    (0 1 2 3)
+	  );
+	}
+	outer
+	{
+	  type wall;
+	  faces
+	  (
+	    (4 5 6 7)
+	  );
+	}
+	/*
+	cyclic_half0
+	{
+	  type cyclic;
+	  neighbourPatch cyclic_half1;
+	  transform rotational;
+	  rotationAxis (0 1 0);
+	  rotationCentre (0 0 0);
+	  faces
+	  (
+            (1 2 6 5)
+	  );
+	}
+	cyclic_half1
+	{
+	  type cyclic;
+	  neighbourPatch cyclic_half0;
+	  transform rotational;
+	  rotationAxis (0 1 0);
+	  rotationCentre (0 0 0);
+	  faces
+	  (
+            (0 3 7 4)
+	  );
+	}
+	*/
 	
     /*inlet
     {
