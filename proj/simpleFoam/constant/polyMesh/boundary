@@ -15,53 +15,40 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-6
+5
 (
-    inlet
-    {
-        type            patch;
-        nFaces          20;
-        startFace       35572;
-    }
     outlet
     {
         type            patch;
-        nFaces          20;
-        startFace       35592;
+        nFaces          1200;
+        startFace       104700;
+    }
+    inlet
+    {
+        type            patch;
+        nFaces          1200;
+        startFace       105900;
     }
     inner
     {
         type            wall;
         inGroups        1(wall);
-        nFaces          1030;
-        startFace       35612;
+        nFaces          1200;
+        startFace       107100;
     }
     outer
     {
         type            wall;
         inGroups        1(wall);
-        nFaces          1034;
-        startFace       36642;
+        nFaces          1200;
+        startFace       108300;
     }
     defaultFaces
     {
         type            empty;
         inGroups        1(empty);
-        nFaces          60;
-        startFace       37676;
-    }
-    blade
-    {
-        type            wall;
-        inGroups        
-2
-(
-bladeGroup
-wall
-)
-;
-        nFaces          5839;
-        startFace       37736;
+        nFaces          1800;
+        startFace       109500;
     }
 )
 
